@@ -20,6 +20,7 @@ public class MessageService {
 
     public void sendText(Long chatId, String text){
         SendMessage message = new SendMessage(chatId.toString(), text);
+        message.setParseMode("HTML");
         try {
             bot.execute(message);
         } catch (TelegramApiException e) {
@@ -31,6 +32,7 @@ public class MessageService {
     public void sendPhoto(Long chatId, String text, String filePath){
         SendPhoto photo = new SendPhoto();
         photo.setChatId(chatId.toString());
+        photo.setParseMode("HTML");
         photo.setCaption(text);
         photo.setPhoto(new InputFile(new File(filePath)));
 

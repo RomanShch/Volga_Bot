@@ -43,8 +43,6 @@ public class MenuService {
         rows.add(row3);
         keyboard.setKeyboard(rows);
 
-
-
         sendMessage(chatId, "Выберите действие", keyboard);
     }
 
@@ -83,7 +81,20 @@ public class MenuService {
         rows.add(row2);
         keyboard.setKeyboard(rows);
 
-        sendMessage(chatId, "Общая информация о предприятии", keyboard);
+        sendMessage(chatId, "<b>ПАО «Россети Волга»</b>\n" +
+                "ПАО «Россети Волга» (входит в Группу «Россети») - одна из крупнейших распределительных электросетевых организаций в Приволжском федеральном округе.\n" +
+                "\n" +
+                "Компания осуществляет передачу электроэнергии и технологическое присоединение потребителей на территории Саратовской, Самарской, Оренбургской, Пензенской, Ульяновской областей, республик Мордовия и Чувашия.\n" +
+                "\n" +
+                "Под управлением находятся более 236 тыс. километров линий электропередачи и 52,7 тыс. подстанций мощностью 37,7 тыс. МВА. Общая численность персонала составляет порядка 20 тыс. человек.\n" +
+                "<u><b>Филиалы компании</b></u>:\n➡«Самарские распределительные сети», " +
+                "\n➡«Саратовские распределительные сети», " +
+                "\n➡«Ульяновские распределительные сети», " +
+                "\n➡«Мордовэнерго», " +
+                "\n➡«Оренбургэнерго», " +
+                "\n➡«Пензаэнерго», " +
+                "\n➡«Чувашэнерго» " +
+                "\nявляются системообразующими территориальными сетевыми организациями в регионах присутствия.", keyboard);
     }
 
     public void sendContactMenu(Long chatId){
@@ -108,6 +119,7 @@ public class MenuService {
 
     private void sendMessage(Long chatId, String text, ReplyKeyboardMarkup keyboard){
         SendMessage message = new SendMessage(chatId.toString(), text);
+        message.setParseMode("HTML");
         message.setReplyMarkup(keyboard);
         try {
             bot.execute(message);
